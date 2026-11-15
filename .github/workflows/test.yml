@@ -1,0 +1,32 @@
+# Type checks the package, its examples and tests, runs the unit tests and
+# checks what a release would ship, on every push and pull request, with the
+# oldest Node the package supports and a current one. Actions are pinned to
+# full commit hashes. No secrets are used.
+name: test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        node: ["22.4.0", "24.10.0"]
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm ci --ignore-scripts
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - run: npm pack --dry-run --ignore-scripts
