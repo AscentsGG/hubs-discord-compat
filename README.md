@@ -6,10 +6,10 @@ Anything Hubs cannot do throws `HubsNotSupportedError` with the feature's name a
 
 ## Install
 
-Version 0.3.0 is attached to its [release on GitHub](https://github.com/AscentsGG/hubs-discord-compat/releases/tag/v0.3.0):
+The kit is on [npm](https://www.npmjs.com/package/hubs-discord-compat):
 
 ```sh
-npm install https://github.com/AscentsGG/hubs-discord-compat/releases/download/v0.3.0/hubs-discord-compat-0.3.0.tgz
+npm install hubs-discord-compat
 ```
 
 You need Node 22.4 or later (the kit uses the WebSocket built into Node). There are no runtime dependencies, and the types ship with the package.

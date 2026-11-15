@@ -1,6 +1,6 @@
 {
   "name": "hubs-discord-compat",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Run a discord.js bot on Hubs: the common discord.js surface on top of the Hubs bot gateway and developer API.",
   "keywords": [
     "hubs",

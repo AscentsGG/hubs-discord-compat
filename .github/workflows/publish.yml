@@ -1,8 +1,9 @@
 # Publishes the package to npm when a version tag (v*) is pushed, or when run by
 # hand from main. It type checks, tests and builds first, then publishes with npm
-# provenance, so the npm page shows where and how the package was built. A tag
-# must match the version in package.json. Actions are pinned to full commit
-# hashes. The only secret is NPM_TOKEN.
+# provenance, so the npm page shows where and how the package was built. It uses
+# npm trusted publishing (GitHub's OIDC token), so there is no npm token or
+# secret. A tag must match the version in package.json. Actions are pinned to
+# full commit hashes.
 name: publish
 
 on:
@@ -46,10 +47,12 @@ jobs:
             echo "Run this from main or from a version tag."
             exit 1
           fi
+      - name: Check npm (trusted publishing needs 11.5.1 or newer)
+        run: |
+          npm --version
+          node -e 'const [a,b,c]=process.argv[1].split(".").map(Number); process.exit(a>11||(a===11&&(b>5||(b===5&&c>=1)))?0:1)' "$(npm --version)"
       - run: npm ci --ignore-scripts
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
       - run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

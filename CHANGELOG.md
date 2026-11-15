@@ -2,6 +2,10 @@
 
 All notable changes to hubs-discord-compat. Versions follow semantic versioning; while the version starts with 0, a minor version may change behavior, and each change says so here.
 
+## 0.3.1
+
+Publishing moved to npm trusted publishing; no code changes.
+
 ## 0.3.0
 
 The first public release.
