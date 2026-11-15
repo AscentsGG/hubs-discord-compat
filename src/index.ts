@@ -78,4 +78,4 @@ export { checkDiscordBotSource, formatPortReport } from "./checker.js";
 export type { PortFinding, PortStatus } from "./checker.js";
 /** This package's version, as discord.js exports its own. Kept equal to
  * package.json by test/package.test.ts. */
-export const version = "0.3.0";
+export const version = "0.3.1";
